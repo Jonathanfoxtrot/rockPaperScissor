@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+            const rock = "ROCK";
+            const paper = "PAPER";
+            const scissor = "SCISSORS";
+            let playerScore = 0;
+            let computerScore = 0;
+
+        function getComputerChoice(){
+            let choice = Math.floor(Math.random() * 3) + 1;
+            switch (choice){
+                case 1:
+                    return rock;
+                case 2:
+                    return paper;
+                case 3:
+                    return scissor;
+            }
+        }
+
+        function playRound(playerSelection, getComputerChoice){
+            playerSelection = playerSelection.toUpperCase();
+            switch (playerSelection){
+                case rock:
+                    if(getComputerChoice == scissor){
+                        playerScore++;
+                        return "You won, rock beats scissor";
+                    }else if(getComputerChoice == rock){
+                        return "It's a draw";
+                    }else{
+                        computerScore++;
+                        return "You lose! Paper beats Rock";
+                    }
+                case paper:
+                    if(getComputerChoice == rock){
+                        playerScore++;
+                        return "You won, rock beats scissor";
+                    }else if(getComputerChoice == paper){
+                        return "It's a draw";
+                    }else{
+                        computerScore++;
+                        return "You lose! Scissors beats Paper";
+                    }
+                case scissor: 
+                    if(getComputerChoice == paper){
+                        playerScore++;
+                        return "You won, rock beats scissor";
+                    }else if(getComputerChoice == scissor){
+                        return "It's a draw";
+                    }else{
+                        computerScore++;
+                        return "You lose! Rock beats Scissors";
+                    }       
+            }
+        }
+
+        function game(){
+            for(let i = 1; i < 6; i++){
+                let playerSelection = prompt("Enter rock, paper or scissors");
+                let computerSelection = getComputerChoice();
+                let roundResult = playRound(playerSelection,computerSelection);
+                console.log("Round " + i + ": " + roundResult);
+            }
+
+            if(playerScore == computerScore){
+                console.log("Playerscore: " + playerScore + "\nComputerscore: " + computerScore +"\nThe results: Tie!");
+            }else if(playerScore > computerScore){
+                console.log("Playerscore: " + playerScore + "\nComputerscore: " + computerScore +"\nThe results: Player Wins!");
+            }else{
+                console.log("Playerscore: " + playerScore + "\nComputerscore: " + computerScore +"\nThe results: Player Loses!");
+            }
+        }
+    
+    console.log(game());
+    
+    </script> 
+</body>
+</html>
